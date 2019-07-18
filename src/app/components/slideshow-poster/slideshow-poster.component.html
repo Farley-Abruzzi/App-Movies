@@ -1,0 +1,9 @@
+<ion-slides [options]="slideOpts">
+    <ion-slide *ngFor="let filme of filmes">
+  
+      <ion-card mode="md" (click)="verDetalhe( filme.id )">
+        <img class="poster" [src]="filme.poster_path | imagen">
+      </ion-card>
+  
+    </ion-slide>
+  </ion-slides>

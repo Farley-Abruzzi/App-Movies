@@ -1,9 +1,23 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Three
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content color="dark">
 
-<ion-content></ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <h3>Favoritos</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  
+  <div *ngFor="let filme of favoritoGenero">
+    <ion-grid *ngIf="filme.fils.length > 0">
+      <ion-row>
+        <ion-col>
+          <h4>{{ filme.genero }}</h4>
+        </ion-col>
+      </ion-row>
+      <app-slideshow-poster [filmes]="filme.fils"></app-slideshow-poster>
+    </ion-grid>
+  </div>
+
+</ion-content>

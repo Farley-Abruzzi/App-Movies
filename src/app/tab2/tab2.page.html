@@ -1,9 +1,50 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-title>
-      Tab Two
+      Buscar Filme
     </ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-toolbar color="dark">
+  <ion-searchbar placeholder="Buscar filme" 
+                 [debounce]="700" 
+                 animated [value]="textoBuscar"
+                 (ionChange)="burcar( $event )"></ion-searchbar>
+</ion-toolbar>
 
-<ion-content></ion-content>
+<ion-content color="dark">
+
+  <ion-grid *ngIf="buscando">
+    <ion-row>
+      <ion-col text-center>
+        <ion-spinner color="primary" name="crescent"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list *ngIf="filmes.length === 0">
+    <ion-list-header color="dark">
+      <ion-label>IDEIAS</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let ideia of ideias" (click)="textoBuscar = ideia" color="dark">
+      <ion-label color="primary">{{ ideia }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6" *ngFor="let filme of filmes">
+        <ion-card (click)="detalhe( filme.id )">
+          <img [src]="filme.poster_path | imagen">
+          <ion-card-header>
+            <ion-card-subtitle>{{ filme.release_date }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <h2>{{ filme.title }}</h2>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
